@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>TemaSambata03022023</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>    
+  </welcome-file-list>
+  
+  
+  	<servlet>
+		<servlet-name>celMaiMicNumar</servlet-name>
+		<servlet-class>com.fdm.CelMaiMicNumarServlet</servlet-class>
+	</servlet>    
+  	<servlet-mapping>
+		<servlet-name>celMaiMicNumar</servlet-name>
+		<url-pattern>/celMaiMicNumar</url-pattern>	
+	</servlet-mapping>
+			
+			
+			
+	<servlet>
+		<servlet-name>celMaiMareNumar</servlet-name>
+		<servlet-class>com.fdm.CelMaiMareNumarServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>celMaiMareNumar</servlet-name>
+		<url-pattern>/celMaiMareNumar</url-pattern>	
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>upperCase</servlet-name>
+		<servlet-class>com.fdm.UpperCaseServlet</servlet-class>
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>upperCase</servlet-name>
+		<url-pattern>/upperCase</url-pattern>	
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>redirectServlet</servlet-name>
+		<servlet-class>com.fdm.TestRedirectServlet</servlet-class>	
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>redirectServlet</servlet-name>
+		<url-pattern>/redirect</url-pattern>	
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>redirectToUpperCase</servlet-name>
+		<servlet-class>com.fdm.RedirectToUpperCase</servlet-class>	
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>redirectToUpperCase</servlet-name>
+		<url-pattern>/redirectToUpperCase</url-pattern>	
+	</servlet-mapping>
+	
+	
+  
+  	<servlet>
+		<servlet-name>forwardToUpperCaseServlet</servlet-name>
+		<servlet-class>com.fdm.ForwardToUpperCaseServlet</servlet-class>	
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>forwardToUpperCaseServlet</servlet-name>
+		<url-pattern>/forwardToUpperCaseServlet</url-pattern>	
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>com.fdm.LoginServlet</servlet-class>	
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>loginServlet</servlet-name>
+		<url-pattern>/loginServlet</url-pattern>	
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+		<servlet-name>/showCookieServlet</servlet-name>
+		<servlet-class>com.fdm.ShowCookieServlet</servlet-class>	
+	</servlet>	
+	<servlet-mapping>
+		<servlet-name>/showCookieServlet</servlet-name>
+		<url-pattern>/showCookieServlet</url-pattern>	
+	</servlet-mapping>
+	
+	
+	
+	<servlet>
+	    <servlet-name>testRedirect</servlet-name>
+	    <jsp-file>/testForward2.html</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>testRedirect</servlet-name>
+	    <url-pattern>/testForward</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+	    <servlet-name>loginPage</servlet-name>
+	    <jsp-file>/Login.html</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>loginPage</servlet-name>
+	    <url-pattern>/login</url-pattern>
+	</servlet-mapping>
+  
+</web-app>
