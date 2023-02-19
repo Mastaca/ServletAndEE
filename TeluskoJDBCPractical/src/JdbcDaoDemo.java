@@ -4,7 +4,7 @@ public class JdbcDaoDemo {
 
 	public static void main(String[] args) {
 		
-		StudentDAO2 dao = new StudentDAO2();
+		StudentDAO dao = new StudentDAO();
 		Student s1 = dao.getStudent(12);
 		
 		System.out.println(s1.sName);

@@ -47,7 +47,7 @@ values
 	(3, 'Spongebob', 'Squarepants', 12.50, '2023-01-04'),
     (4, 'Patrick', 'Star', 12.50, '2023-01-05'),
     (5, 'Sandy', 'Cheeks', 17.50, '2023-01-06');
-    
+
 insert into employees (employee_id, first_name, last_name)
 values 
 	(6, 'Sheldon', 'Plankton');
