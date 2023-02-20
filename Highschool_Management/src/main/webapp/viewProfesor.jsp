@@ -12,18 +12,13 @@
 <body>
 
 	<%
-	
 	Profesor p = (Profesor) request.getAttribute("profesor");
-	
 	%>
-
-	<form>
 	
+	<form>
 		<input type="hidden" name="id" value="<%= p.getId() %>"><br>
 		nume profesor: <%= p.getNume() %><br>
 		materie profesor: <%= p.getMaterie().getDenumire() %>
-		
-	
 	</form>
 
 </body>

@@ -15,45 +15,32 @@ import com.fdm.highschool.service.ClasaService;
 
 @WebServlet("/clasa")
 public class ClasaServlet extends HttpServlet {
-
+	private static final long serialVersionUID = 1L;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		int id = Integer.parseInt(request.getParameter("id"));
-		
 		try {
 			Clasa clasa = ClasaService.getInstance().findById(id);
-		
 			request.setAttribute("clasa", clasa);
-			
 			RequestDispatcher rd = request.getRequestDispatcher("viewClasa.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		String numeClasa = req.getParameter("nume");
-		
 		Clasa clasa = new Clasa(numeClasa, 0);
-		
 		try {
 			Clasa savedClasa = ClasaService.getInstance().save(clasa);
 			
 			resp.sendRedirect("/Highschool_Management/clasa?id=" + savedClasa.getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
 	}
-	
-	
-
-
 }

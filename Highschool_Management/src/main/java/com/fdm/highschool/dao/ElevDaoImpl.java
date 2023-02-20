@@ -23,12 +23,10 @@ public class ElevDaoImpl implements ElevDao {
 			return create(elev);
 		} else {
 			return update(elev);
-		}
-		
+		}		
 	}
 
 	private Elev create(Elev elev) throws SQLException {
-			
 		Connection con = JdbcSession.getConnection();
 		PreparedStatement st = con.prepareStatement("insert into elev (nume_elev, adresa_elev) "
 				+ "values (?, ?)", Statement.RETURN_GENERATED_KEYS);
@@ -36,67 +34,63 @@ public class ElevDaoImpl implements ElevDao {
 		st.setString(1, elev.getNume());
 		st.setString(2, elev.getAdresa());
 		st.executeUpdate();
-		
 		int id;
-		
 		try (ResultSet generatedKeys = st.getGeneratedKeys()) {
             if (generatedKeys.next()) {
                 id = generatedKeys.getInt(1);
-            }
-            else {
+            } else {
                 throw new SQLException("Creating user failed, no ID obtained.");
             }
         }
-		
 		st.close();
 		con.close();
-		
 		return findById(id);
-		
 	}
 	
-	
 	private Elev update(Elev elev) throws SQLException {
-		
 		Connection con = JdbcSession.getConnection();
-		PreparedStatement st = con.prepareStatement("update elev set nume_elev = ?, adresa_elev = ? "
+		PreparedStatement st = con.prepareStatement("update elev set nume_elev = ?, adresa_elev = ?, clasa_id = ? "
 				+ "where id = ?");
 		
 		st.setString(1, elev.getNume());
 		st.setString(2, elev.getAdresa());
-		st.setInt(3, elev.getId());
+		st.setInt(3, elev.getClasa().getId());
+		st.setInt(4, elev.getId());
 		st.executeUpdate();
-		
 		st.close();
 		con.close();
-		
 		return findById(elev.getId());
 	}
 	
 	@Override
-	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int id) throws SQLException {
+		Connection con = JdbcSession.getConnection();
+		PreparedStatement st = con.prepareStatement("delete from elev where id = ?");		
+		st.setInt(1, id);
+		st.executeUpdate();
+		st.close();
+		con.close();		
 	}
 
 	@Override
 	public Elev findById(int id) throws SQLException {
-		
 		Connection con = JdbcSession.getConnection();
 		PreparedStatement st = con.prepareStatement("select "
-				+ "id, nume_elev, adresa_elev from elev where id = ?");
+				+ "id, nume_elev, adresa_elev, clasa_id from elev where id = ?");
 		
 		st.setInt(1, id);
 		ResultSet rs = st.executeQuery();
-		
-		return elevMapper.map(rs);
+		Elev elev = elevMapper.map(rs);
+		st.close();
+		con.close();
+		return elev;
 	}
 
 	@Override
 	public List<Elev> findAll() throws SQLException {
 		Connection con = JdbcSession.getConnection();
 		PreparedStatement st = con.prepareStatement("select id, nume_elev, adresa_elev, clasa_id from elev");
-		ResultSet rs = st.executeQuery();		
+		ResultSet rs = st.executeQuery();
 		List<Elev> elevi = elevMapper.mapAll(rs);
 		st.close();
 		con.close();

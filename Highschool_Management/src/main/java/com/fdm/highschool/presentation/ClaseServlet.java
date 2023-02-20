@@ -18,27 +18,22 @@ public class ClaseServlet extends HttpServlet {
     
     public ClaseServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
 			request.setAttribute("clase", ClasaService.getInstance().findAll());
 			RequestDispatcher rd = request.getRequestDispatcher("viewClase.jsp");
 			rd.forward(request, response);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
-
 }

@@ -11,7 +11,7 @@ import com.fdm.highschool.entities.Profesor;
 public class ProfesorService {
 	
 	private ProfesorDao profesorDao;
-
+	
 	private ProfesorService(ProfesorDao profesorDao) {
 		super();
 		this.profesorDao = profesorDao;

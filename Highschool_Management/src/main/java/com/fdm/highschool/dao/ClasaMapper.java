@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fdm.highschool.entities.Clasa;
-import com.fdm.highschool.entities.Elev;
 
 public class ClasaMapper {
 	

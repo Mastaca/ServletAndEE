@@ -10,11 +10,11 @@
 <title>Clase</title>
 </head>
 <body>
-
+	
 	<%
 		List<Clasa> clase = (List<Clasa>)request.getAttribute("clase");
 	%>
-
+	
 	<h1>Clase</h1>
 	<table>
 		<tr>
@@ -28,15 +28,13 @@
 				Actions
 			</th>			
 		</tr>	
-		<%
-			for(Clasa clasa : clase) { %>
+		<%	for(Clasa clasa : clase) { %>
 				<tr>
-					<td><%= clasa.getNume()%></td>				
-					<td><%= clasa.getNumarElevi()%></td>						
-					<td>Edit Delete</td>				
+					<td><%= clasa.getNume()%></td>
+					<td><%= clasa.getNumarElevi()%></td>
+					<td>Edit Delete</td>
 				</tr>
-			<%}%>
-	
+		<%	}%>
 	</table>
 
 </body>

@@ -72,7 +72,4 @@ public class Profesor {
 		return Objects.equals(clasa, other.clasa) && id == other.id && materie == other.materie
 				&& Objects.equals(nume, other.nume);
 	}
-	
-	
-
 }

@@ -71,5 +71,4 @@ public class Clasa {
 		return Objects.equals(elevi, other.elevi) && id == other.id && numarElevi == other.numarElevi
 				&& Objects.equals(nume, other.nume) && Objects.equals(profesori, other.profesori);
 	}
-
 }

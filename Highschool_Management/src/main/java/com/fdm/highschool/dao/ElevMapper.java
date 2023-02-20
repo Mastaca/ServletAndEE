@@ -7,16 +7,17 @@ import java.util.List;
 
 import com.fdm.highschool.entities.Clasa;
 import com.fdm.highschool.entities.Elev;
+import com.fdm.highschool.service.ClasaService;
 
 public class ElevMapper {
 	
-	public Elev map(ResultSet rs) throws SQLException {
-	
+	public Elev map(ResultSet rs) throws SQLException {	
 		if (rs.next()) {
 			int id = rs.getInt(1);
 			String nume = rs.getString(2);
 			String adresa = rs.getString(3);
-			return new Elev(id, nume, adresa);
+			Clasa clasa = ClasaService.getInstance().findById(rs.getInt(4));
+			return new Elev(id, nume, adresa, clasa);
 		} else {
 			return null;
 		}

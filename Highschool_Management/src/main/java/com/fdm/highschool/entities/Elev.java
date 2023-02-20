@@ -80,7 +80,4 @@ public class Elev {
 		return Objects.equals(adresa, other.adresa) && Objects.equals(clasa, other.clasa) && id == other.id
 				&& Objects.equals(nume, other.nume);
 	}
-	
-	
-
 }

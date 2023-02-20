@@ -5,15 +5,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fdm.highschool.entities.Clasa;
-import com.fdm.highschool.entities.Elev;
 import com.fdm.highschool.entities.Materie;
 import com.fdm.highschool.entities.Profesor;
 
 public class ProfesorMapper {
 	
-	public Profesor map(ResultSet rs) throws SQLException {
-	
+	public Profesor map(ResultSet rs) throws SQLException {	
 		if (rs.next()) {
 			int id = rs.getInt(1);
 			String nume = rs.getString(2);
@@ -34,5 +31,5 @@ public class ProfesorMapper {
 		}
 		return profesori;
 	}
-
+	
 }

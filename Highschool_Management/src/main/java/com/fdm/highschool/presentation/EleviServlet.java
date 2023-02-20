@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fdm.highschool.entities.Clasa;
+import com.fdm.highschool.entities.Elev;
+import com.fdm.highschool.service.ClasaService;
 import com.fdm.highschool.service.ElevService;
 
 @WebServlet("/elevi")
@@ -18,27 +21,43 @@ public class EleviServlet extends HttpServlet {
     
     public EleviServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
 			request.setAttribute("elevi", ElevService.getInstance().findAll());
 			RequestDispatcher rd = request.getRequestDispatcher("viewElevi.jsp");
 			rd.forward(request, response);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
-		
-		
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String button = request.getParameter("modify");
+		try {
+			if ("edit".equals(button)) {
+				int id = Integer.parseInt(request.getParameter("id"));
+//				response.sendRedirect("updateElev?id="+id);
+				request.getRequestDispatcher("updateElev").forward(request, response);
+			} else if("delete".equals(button)) {
+				int id = Integer.parseInt(request.getParameter("id"));
+				if (ElevService.getInstance().findById(id).getClasa() != null) {
+					Elev elev = ElevService.getInstance().findById(id);
+					Clasa clasa = elev.getClasa();
+					clasa.setNumarElevi(clasa.getNumarElevi()-1);
+					ClasaService.getInstance().save(clasa);
+				}
+				ElevService.getInstance().delete(id);
+				
+				response.sendRedirect("/Highschool_Management/elevi");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

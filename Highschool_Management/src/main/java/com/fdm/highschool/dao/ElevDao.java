@@ -8,7 +8,7 @@ import com.fdm.highschool.entities.Elev;
 public interface ElevDao {
 	
 	Elev save( Elev elev) throws SQLException;
-	void delete(int id);
+	void delete(int id) throws SQLException;
 	Elev findById(int id) throws SQLException;
 	List<Elev> findAll() throws SQLException;
 	

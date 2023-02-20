@@ -18,11 +18,9 @@ public class ProfesoriServlet extends HttpServlet {
     
     public ProfesoriServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
 			request.setAttribute("profesori", ProfesorService.getInstance().findAll());
 			RequestDispatcher rd = request.getRequestDispatcher("viewProfesori.jsp");
@@ -31,10 +29,7 @@ public class ProfesoriServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

@@ -11,7 +11,7 @@ import com.fdm.highschool.entities.Clasa;
 public class ClasaService {
 	
 	private ClasaDao clasaDao;
-
+	
 	private ClasaService(ClasaDao clasaDao) {
 		super();
 		this.clasaDao = clasaDao;
@@ -28,9 +28,8 @@ public class ClasaService {
 	public Clasa findById(int id) throws SQLException {
 		return clasaDao.findById(id);
 	}
-
-	public List<Clasa> findAll() throws SQLException {
-		
+	
+	public List<Clasa> findAll() throws SQLException {		
 		return clasaDao.findAll();
 	}
 	

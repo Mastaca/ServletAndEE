@@ -25,6 +25,10 @@ public class ElevService {
 		return elevDao.save(elev);
 	}
 	
+	public void delete(int id) throws SQLException {
+		elevDao.delete(id);
+	}
+	
 	public Elev findById(int id) throws SQLException {
 		return elevDao.findById(id);
 	}

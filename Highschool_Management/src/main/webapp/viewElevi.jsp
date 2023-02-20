@@ -29,23 +29,29 @@
 			</th>
 			<th>
 				Actions
-			</th>			
-		</tr>	
+			</th>
+		</tr>
 		<%
 			for(Elev elev : elevi) { %>
 				<tr>
-					<td><%= elev.getNume()%></td>				
-					<td><%= elev.getAdresa()%></td>				
+					<td><%= elev.getNume()%></td>
+					<td><%= elev.getAdresa()%></td>
 					<td><% if (elev.getClasa().getId() == 0){ %>
 							Nu este nici o clasa
 						<%} else {%>
 							<%=elev.getClasa().getId()%>
 						<%}%>
 					</td>
-					<td>Edit Delete</td>				
+					<td>
+						<form action="elevi" method="post">
+							<input type="hidden" name="id" value = "<%=elev.getId()%>">
+							<%-- <input type="hidden" name="elev" value = "<%=elev%>"> --%>
+							<button type="submit" name="modify" value="edit">Edit</button>
+   							<button type="submit" name="modify" value="delete">Delete</button>
+						</form>
+					</td>
 				</tr>
 			<%}%>
-	
 	</table>
 
 </body>
