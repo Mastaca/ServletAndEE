@@ -37,7 +37,17 @@ public class ProfesorServlet extends HttpServlet {
 		String numeProfesor = req.getParameter("nume");
 		String materieprofesor = req.getParameter("materie");
 		Materie materie = Materie.valueOf(materieprofesor);
-		Profesor profesor = new Profesor(numeProfesor, materie);
+		String idString = req.getParameter("id");	
+		int id;
+		Profesor profesor;
+		if (idString != null) {
+			id = Integer.parseInt(idString);
+			profesor = new Profesor(id,numeProfesor, materie);
+		} else {
+			profesor = new Profesor(numeProfesor, materie);
+		}
+		
+		
 		try {
 			Profesor savedProfesor = ProfesorService.getInstance().save(profesor);
 			resp.sendRedirect("/Highschool_Management/profesor?id=" + savedProfesor.getId());

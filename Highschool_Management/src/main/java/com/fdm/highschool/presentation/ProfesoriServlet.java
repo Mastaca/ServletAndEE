@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fdm.highschool.entities.Profesor;
 import com.fdm.highschool.service.ProfesorService;
 
 @WebServlet("/profesori")
@@ -32,8 +33,18 @@ public class ProfesoriServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String button = request.getParameter("modify");
+		if ("edit".equals(button)) {
+			request.getRequestDispatcher("updateProfesor").forward(request, response);
+		} else if("delete".equals(button)) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			try {
+				ProfesorService.getInstance().delete(id);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}			
+			response.sendRedirect("/Highschool_Management/profesori");
+		}
 	}
 
 }

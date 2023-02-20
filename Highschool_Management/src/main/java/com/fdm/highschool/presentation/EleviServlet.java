@@ -38,13 +38,11 @@ public class EleviServlet extends HttpServlet {
 		String button = request.getParameter("modify");
 		try {
 			if ("edit".equals(button)) {
-				int id = Integer.parseInt(request.getParameter("id"));
-//				response.sendRedirect("updateElev?id="+id);
 				request.getRequestDispatcher("updateElev").forward(request, response);
 			} else if("delete".equals(button)) {
 				int id = Integer.parseInt(request.getParameter("id"));
-				if (ElevService.getInstance().findById(id).getClasa() != null) {
-					Elev elev = ElevService.getInstance().findById(id);
+				Elev elev = ElevService.getInstance().findById(id);
+				if (elev.getClasa() != null) {
 					Clasa clasa = elev.getClasa();
 					clasa.setNumarElevi(clasa.getNumarElevi()-1);
 					ClasaService.getInstance().save(clasa);

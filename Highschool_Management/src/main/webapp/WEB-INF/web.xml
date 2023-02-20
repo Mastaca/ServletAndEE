@@ -10,13 +10,22 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-  <servlet>
+  	<servlet>
 	    <servlet-name>updateElev</servlet-name>
 	    <jsp-file>/updateElev.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>updateElev</servlet-name>
 	    <url-pattern>/updateElev</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>updateProfesor</servlet-name>
+	    <jsp-file>/updateProfesor.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>updateProfesor</servlet-name>
+	    <url-pattern>/updateProfesor</url-pattern>
 	</servlet-mapping>
   
   

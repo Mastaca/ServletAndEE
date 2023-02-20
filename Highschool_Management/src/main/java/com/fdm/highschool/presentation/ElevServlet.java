@@ -38,16 +38,15 @@ public class ElevServlet extends HttpServlet {
 		String adresaElev = req.getParameter("adresa");
 		if (idString != null) {
 			int id = Integer.parseInt(idString);
+			Elev elevTest = (Elev)req.getAttribute("elev");
 			Clasa clasa = null;
 			try {
 				String clasaIdString = req.getParameter("clasa");
 				int clasaId = Integer.parseInt(clasaIdString);
 				clasa = ClasaService.getInstance().findById(clasaId);
 			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			if (clasa != null) {

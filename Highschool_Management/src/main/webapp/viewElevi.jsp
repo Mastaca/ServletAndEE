@@ -8,6 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Elevi</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -45,7 +46,7 @@
 					<td>
 						<form action="elevi" method="post">
 							<input type="hidden" name="id" value = "<%=elev.getId()%>">
-							<%-- <input type="hidden" name="elev" value = "<%=elev%>"> --%>
+							<% request.setAttribute("elev",elev);%>
 							<button type="submit" name="modify" value="edit">Edit</button>
    							<button type="submit" name="modify" value="delete">Delete</button>
 						</form>

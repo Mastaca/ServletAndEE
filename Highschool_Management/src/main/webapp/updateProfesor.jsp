@@ -3,33 +3,35 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@ page import="com.fdm.highschool.entities.*" %>
-<%@ page import="com.fdm.highschool.services.*" %>
+<%@ page import="com.fdm.highschool.service.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificare date elev</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<%	
 		if (request.getParameter("id") != null){
 		String idString = request.getParameter("id");
 		int id = Integer.parseInt(idString);
-		Elev elev = ElevService.getInstance().findById(id);
-		/* Elev elev = request.getParameter("elev") */
+		Profesor profesor = ProfesorService.getInstance().findById(id);
+		List<Materie> materii = Arrays.asList(Materie.values());
 	%>
 	
 	<h1>Modificare date elev</h1>
 	<p>
 	
-	<form action="elev" method="post">
+	<form action="profesor" method="post">
 	<table>
 		<tr>
 			<th>
 				Nume: 
 			</th>
 			<td>
-				<%=elev.getNume() %>
+				<%=profesor.getNume() %>
 			</td>
 			<td>
 				<input type="text"  name="nume"><br>
@@ -37,13 +39,18 @@
 		</tr>
 		<tr>
 			<th>
-				Adresa: 
+				Materie: 
 			</th>
 			<td>
-				<%=elev.getAdresa() %>
+				<%=profesor.getMaterie().getDenumire() %>
 			</td>
 			<td>
-				<input type="text"  name="adresa"><br>
+				Selectati materia: <br>
+				<select name="materie">
+					<%	for(Materie m : materii) {%>
+							<option value="<%= m.name() %>"><%= m.getDenumire() %></option>
+					<%	}%>
+				</select>
 			</td>
 		</tr>
 		<tr>
@@ -51,10 +58,10 @@
 				Clasa: 
 			</th>
 			<td>
-				<% 	if (elev.getClasa() == null) {%>
+				<% 	if (profesor.getClasa() == null) {%>
 					Nu este nici o clasa
 				<%	} else {%>
-					<%= elev.getClasa().getNume() %>
+					<%= profesor.getClasa().getNume() %>
 				<%	}%>
 			</td>
 			<td>
@@ -63,9 +70,6 @@
 		</tr>
 		<tr>
 			<td>
-				<% 	if (elev.getClasa() != null) {%>
-					<input type="hidden" name="id" value = "<%=elev.getClasa().getId()%>">
-				<%	}%>
 				<input type="hidden" name="id" value = "<%=id%>">
 				<input type="submit" value="Modificare">
 			</td>

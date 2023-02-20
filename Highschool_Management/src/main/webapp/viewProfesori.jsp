@@ -8,6 +8,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Profesori</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -33,7 +34,14 @@
 				<tr>
 					<td><%= p.getNume()%></td>
 					<td><%= p.getMaterie()%></td>
-					<td>Edit Delete</td>
+					<td>
+						<form action="profesori" method="post">
+							<input type="hidden" name="id" value = "<%=p.getId()%>">
+							<button type="submit" name="modify" value="edit">Edit</button>
+   							<button type="submit" name="modify" value="delete">Delete</button>
+						</form>
+					
+					</td>
 				</tr>
 		<%	}%>
 	</table>

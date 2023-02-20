@@ -8,7 +8,7 @@ import com.fdm.highschool.entities.Clasa;
 public interface ClasaDao {
 	
 	Clasa save(Clasa clasa) throws SQLException;
-	void delete(int id);
+	void delete(int id) throws SQLException;
 	Clasa findById(int id) throws SQLException;
 	List<Clasa> findAll() throws SQLException;
 	

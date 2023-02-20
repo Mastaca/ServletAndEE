@@ -25,6 +25,10 @@ public class ClasaService {
 		return clasaDao.save(clasa);
 	}
 	
+	public void delete(int id) throws SQLException {
+		clasaDao.delete(id);
+	}
+	
 	public Clasa findById(int id) throws SQLException {
 		return clasaDao.findById(id);
 	}

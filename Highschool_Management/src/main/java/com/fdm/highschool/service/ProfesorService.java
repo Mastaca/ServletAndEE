@@ -25,11 +25,16 @@ public class ProfesorService {
 		return profesorDao.save(profesor);
 	}
 	
+	public void delete(int id) throws SQLException {
+		profesorDao.delete(id);
+	}
+	
 	public Profesor findById(int id) throws SQLException {
 		return profesorDao.findById(id);
 	}
 	
 	public List<Profesor> findAll() throws SQLException {
 		return profesorDao.findAll();
-	}	
+	}
+	
 }

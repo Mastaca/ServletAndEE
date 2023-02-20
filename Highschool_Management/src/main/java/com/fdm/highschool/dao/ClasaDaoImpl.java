@@ -63,8 +63,13 @@ public class ClasaDaoImpl implements ClasaDao {
 	}
 	
 	@Override
-	public void delete(int id) {
-		
+	public void delete(int id) throws SQLException {
+		Connection con = JdbcSession.getConnection();
+		PreparedStatement st = con.prepareStatement("delete from clasa where id = ?");		
+		st.setInt(1, id);
+		st.executeUpdate();
+		st.close();
+		con.close();
 	}
 
 	@Override

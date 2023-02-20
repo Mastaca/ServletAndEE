@@ -64,8 +64,13 @@ public class ProfesorDaoImpl implements ProfesorDao {
 	}
 	
 	@Override
-	public void delete(int id) {
-		
+	public void delete(int id) throws SQLException {
+		Connection con = JdbcSession.getConnection();
+		PreparedStatement st = con.prepareStatement("delete from profesor where id = ?");		
+		st.setInt(1, id);
+		st.executeUpdate();
+		st.close();
+		con.close();
 	}
 	
 	@Override

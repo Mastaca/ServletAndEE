@@ -7,6 +7,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Clasa</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 

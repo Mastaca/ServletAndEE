@@ -3,13 +3,12 @@
 
 <%@ page import="com.fdm.highschool.entities.*" %>
 <%@ page import="java.util.*" %>
-
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	

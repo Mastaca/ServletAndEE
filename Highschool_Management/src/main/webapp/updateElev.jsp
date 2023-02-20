@@ -3,12 +3,13 @@
     pageEncoding="ISO-8859-1"%>
 
 <%@ page import="com.fdm.highschool.entities.*" %>
-<%@ page import="com.fdm.highschool.services.*" %>
+<%@ page import="com.fdm.highschool.service.*" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Modificare date elev</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<%	
@@ -63,9 +64,6 @@
 		</tr>
 		<tr>
 			<td>
-				<% 	if (elev.getClasa() != null) {%>
-					<input type="hidden" name="id" value = "<%=elev.getClasa().getId()%>">
-				<%	}%>
 				<input type="hidden" name="id" value = "<%=id%>">
 				<input type="submit" value="Modificare">
 			</td>
