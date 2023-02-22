@@ -36,7 +36,6 @@ public class ClaseServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String button = request.getParameter("modify");
 		try {
 			if ("edit".equals(button)) {

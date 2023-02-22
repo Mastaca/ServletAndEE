@@ -27,6 +27,15 @@
 	    <servlet-name>updateProfesor</servlet-name>
 	    <url-pattern>/updateProfesor</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+	    <servlet-name>updateClasa</servlet-name>
+	    <jsp-file>/updateClasa.jsp</jsp-file>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>updateClasa</servlet-name>
+	    <url-pattern>/updateClasa</url-pattern>
+	</servlet-mapping>
   
   
   

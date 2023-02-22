@@ -75,12 +75,12 @@ public class ElevDaoImpl implements ElevDao {
 	@Override
 	public Elev findById(int id) throws SQLException {
 		Connection con = JdbcSession.getConnection();
-		PreparedStatement st = con.prepareStatement("select "
-				+ "id, nume_elev, adresa_elev, clasa_id from elev where id = ?");
+		PreparedStatement st = con.prepareStatement("select e.id, e.nume_elev, e.adresa_elev, c.id, c.nume_clasa, c.numar_elevi "
+				+ "from elev e join clasa c on e.clasa_id=c.id where e.id = ?");
 		
 		st.setInt(1, id);
 		ResultSet rs = st.executeQuery();
-		Elev elev = elevMapper.map(rs);
+		Elev elev = elevMapper.mapAll(rs).get(0);
 		st.close();
 		con.close();
 		return elev;
@@ -89,7 +89,9 @@ public class ElevDaoImpl implements ElevDao {
 	@Override
 	public List<Elev> findAll() throws SQLException {
 		Connection con = JdbcSession.getConnection();
-		PreparedStatement st = con.prepareStatement("select id, nume_elev, adresa_elev, clasa_id from elev");
+		PreparedStatement st = con.prepareStatement(
+				"select e.id, e.nume_elev, e.adresa_elev, c.id, c.nume_clasa, c.numar_elevi "
+				+ "from elev e join clasa c on e.clasa_id=c.id;");
 		ResultSet rs = st.executeQuery();
 		List<Elev> elevi = elevMapper.mapAll(rs);
 		st.close();

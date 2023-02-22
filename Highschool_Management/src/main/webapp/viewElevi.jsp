@@ -40,7 +40,7 @@
 					<td><% if (elev.getClasa().getId() == 0){ %>
 							Nu este nici o clasa
 						<%} else {%>
-							<%=elev.getClasa().getId()%>
+							<%=elev.getClasa().getNume()%>
 						<%}%>
 					</td>
 					<td>

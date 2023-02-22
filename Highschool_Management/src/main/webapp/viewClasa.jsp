@@ -12,7 +12,7 @@
 <body>
 
 	<%
-		Clasa c = (Clasa) request.getAttribute("clasa");	
+		Clasa c = (Clasa) request.getAttribute("clasa");
 	%>
 
 	<form>	

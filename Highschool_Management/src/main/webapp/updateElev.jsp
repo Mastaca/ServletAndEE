@@ -4,6 +4,7 @@
 
 <%@ page import="com.fdm.highschool.entities.*" %>
 <%@ page import="com.fdm.highschool.service.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 		String idString = request.getParameter("id");
 		int id = Integer.parseInt(idString);
 		Elev elev = ElevService.getInstance().findById(id);
-		/* Elev elev = request.getParameter("elev") */
+		List<Clasa> listaClase = ClasaService.getInstance().findAll();
 	%>
 	
 	<h1>Modificare date elev</h1>
@@ -59,7 +60,11 @@
 				<%	}%>
 			</td>
 			<td>
-				<input type="text"  name="clasa"><br>
+				<select name="clasa">
+					<%	for(Clasa c : listaClase) {%>
+							<option value="<%= c.getId() %>" <% if (elev.getClasa().getId() == c.getId()) {%>selected="selected"<%} %>><%= c.getNume() %></option>
+					<%	}%>
+				</select>
 			</td>
 		</tr>
 		<tr>

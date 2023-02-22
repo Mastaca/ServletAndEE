@@ -38,7 +38,6 @@ public class ElevServlet extends HttpServlet {
 		String adresaElev = req.getParameter("adresa");
 		if (idString != null) {
 			int id = Integer.parseInt(idString);
-			Elev elevTest = (Elev)req.getAttribute("elev");
 			Clasa clasa = null;
 			try {
 				String clasaIdString = req.getParameter("clasa");
@@ -52,8 +51,7 @@ public class ElevServlet extends HttpServlet {
 			if (clasa != null) {
 				Elev elev = new Elev(id, numeElev, adresaElev, clasa);
 				try {
-					Elev savedElev = ElevService.getInstance().save(elev);					
-//					int nrElevi = savedElev.getClasa().getNumarElevi();
+					Elev savedElev = ElevService.getInstance().save(elev);
 					clasa.setNumarElevi(clasa.getNumarElevi()+1);
 					ClasaService.getInstance().save(clasa);					
 					resp.sendRedirect("/Highschool_Management/elev?id=" + savedElev.getId());
