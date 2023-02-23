@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fdm.highschool.entities.Clasa;
+import com.fdm.highschool.entities.Materie;
+import com.fdm.highschool.entities.Profesor;
+import com.fdm.highschool.service.ProfesorService;
 
 public class ClasaMapper {
 	
@@ -30,5 +33,14 @@ public class ClasaMapper {
 			clase.add(new Clasa(id, nume, numarElevi));
 		}
 		return clase;
+	}
+	
+	public List<Profesor> mapProfesori(ResultSet rs) throws SQLException {
+		List<Profesor> listaProf = new ArrayList<>();
+		while (rs.next()) {
+			int idProfesor = rs.getInt(1);			
+			listaProf.add(ProfesorService.getInstance().findById(idProfesor));
+		}
+		return listaProf;
 	}
 }

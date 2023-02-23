@@ -11,16 +11,34 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+	
 	<%
 	Profesor p = (Profesor) request.getAttribute("profesor");
 	%>
 	
+	<h1>Informatii profesor</h1>
+	
+	<table>
 	<form>
 		<input type="hidden" name="id" value="<%= p.getId() %>"><br>
-		nume profesor: <%= p.getNume() %><br>
-		materie profesor: <%= p.getMaterie().getDenumire() %>
+		<tr>
+			<th>
+				Nume: 
+			</th>			
+			<td>
+				<%= p.getNume() %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				materie: 
+			</th>			
+			<td>
+				<%= p.getMaterie().getDenumire() %>
+			</td>
+		</tr>
 	</form>
+	</table>
 
 </body>
 </html>

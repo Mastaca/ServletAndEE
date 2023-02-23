@@ -7,6 +7,7 @@ import com.fdm.highschool.dao.ClasaDao;
 import com.fdm.highschool.dao.ClasaDaoImpl;
 import com.fdm.highschool.dao.ClasaMapper;
 import com.fdm.highschool.entities.Clasa;
+import com.fdm.highschool.entities.Profesor;
 
 public class ClasaService {
 	
@@ -35,6 +36,16 @@ public class ClasaService {
 	
 	public List<Clasa> findAll() throws SQLException {		
 		return clasaDao.findAll();
+	}
+	
+	public List<Profesor> findProfesors(int idClasa) throws SQLException {		
+		return clasaDao.findProfs(idClasa);
+	}
+
+	public void addProfessor(int idClasa, int idProfesor) throws SQLException {
+		clasaDao.addProfessor(idClasa, idProfesor);
+
+		
 	}
 	
 }

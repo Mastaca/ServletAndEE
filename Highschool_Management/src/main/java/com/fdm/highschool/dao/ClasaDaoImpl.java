@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import com.fdm.highschool.entities.Clasa;
+import com.fdm.highschool.entities.Profesor;
 
 public class ClasaDaoImpl implements ClasaDao {
 	
@@ -92,6 +93,30 @@ public class ClasaDaoImpl implements ClasaDao {
 		st.close();
 		con.close();
 		return clase;
+	}
+	
+	public List<Profesor> findProfs(int idClasa) throws SQLException {
+		Connection con = JdbcSession.getConnection();
+		PreparedStatement st = con.prepareStatement("select profesor_id from clase_profesori where clasa_id=?");
+		st.setInt(1, idClasa);
+		ResultSet rs = st.executeQuery();
+		List<Profesor> listaProfesori = clasaMapper.mapProfesori(rs);
+		st.close();
+		con.close();
+		return listaProfesori;
+	}
+
+	@Override
+	public void addProfessor(int idClasa, int idProfesor) throws SQLException {
+		Connection con = JdbcSession.getConnection();
+		PreparedStatement st = con.prepareStatement(
+				"insert into clase_profesori (clasa_id, profesor_id)"
+				+ "values (?,?);");
+		st.setInt(1, idClasa);
+		st.setInt(2, idProfesor);
+		st.executeUpdate();
+		st.close();
+		con.close();
 	}
 	
 }

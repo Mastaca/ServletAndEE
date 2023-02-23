@@ -12,6 +12,14 @@ public class Clasa {
 	private List<Elev> elevi;
 	private List<Profesor> profesori;
 	
+	public List<Profesor> getProfesori() {
+		return profesori;
+	}
+
+	public void setProfesori(List<Profesor> profesori) {
+		this.profesori = profesori;
+	}
+
 	public Clasa(int id) {
 		super();
 		this.id = id;

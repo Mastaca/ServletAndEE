@@ -14,17 +14,42 @@
 	<%
 		Elev e = (Elev) request.getAttribute("elev");
 	%>
-	<h1>Date elev</h1>
+	<h1>Informatii elev</h1>
+	<table>
 	<form>
 		<input type="hidden" name="id" value="<%= e.getId() %>"><br>
-		Nume: <%= e.getNume() %><br>
-		Adresa: <%= e.getAdresa() %><br>
-		Clasa: <%
-			if (e.getClasa() != null) {%>
-		<%=e.getClasa().getNume()%>	
-		<%	} else {%>
-		Nu este in clasa.
-		<%	}%>
+		<tr>
+			<th>
+				Nume: 
+			</th>			
+			<td>
+				<%= e.getNume() %>
+			</td>
+		</tr>
+		<tr>
+			<th>
+				Adresa: 
+			</th>			
+			<td>
+				<%= e.getAdresa() %>
+			</td>
+		</tr>
+		
+		<tr>
+			<th>
+				Clasa: 
+			</th>			
+			<td>
+				<%	if (e.getClasa() != null) {%>
+						<%=e.getClasa().getNume()%>	
+						<%	} else {%>
+						Nu este in clasa.
+				<%	}%>
+			</td>
+		</tr>
+		</table>
+		
+		
 		
 	</form>
 
