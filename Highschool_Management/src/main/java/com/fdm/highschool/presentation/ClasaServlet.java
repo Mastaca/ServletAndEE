@@ -36,16 +36,13 @@ public class ClasaServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String numeClasa = req.getParameter("nume");
-		String numarElevi = req.getParameter("nrElevi");
 		Clasa clasa; 
 		String idProfString = req.getParameter("chosenProfesor");
 		if (idProfString != null) {
 			int idProfesor = Integer.parseInt(idProfString);
 			int idClasa = Integer.parseInt(req.getParameter("id"));
 			try {
-				ClasaService.getInstance().addProfessor(idClasa,idProfesor);
-//				clasa = new Clasa(numeClasa, Integer.parseInt(numarElevi));
-//				Clasa savedClasa = ClasaService.getInstance().save(clasa);				
+				ClasaService.getInstance().addProfessor(idClasa,idProfesor);		
 				resp.sendRedirect("/Highschool_Management/clasa?id=" + idClasa);
 			} catch (SQLException e) {
 				e.printStackTrace();

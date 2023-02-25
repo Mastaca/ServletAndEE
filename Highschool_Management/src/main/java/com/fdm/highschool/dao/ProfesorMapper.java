@@ -1,6 +1,7 @@
 package com.fdm.highschool.dao;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import com.fdm.highschool.entities.Profesor;
 
 public class ProfesorMapper {
 	
-	public Profesor map(ResultSet rs) throws SQLException {	
+	public Profesor map(ResultSet rs) throws SQLException {
 		if (rs.next()) {
 			int id = rs.getInt(1);
 			String nume = rs.getString(2);

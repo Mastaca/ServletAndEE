@@ -77,8 +77,7 @@ public class ClasaDaoImpl implements ClasaDao {
 	public Clasa findById(int id) throws SQLException {
 		Connection con = JdbcSession.getConnection();
 		PreparedStatement st = con.prepareStatement("select "
-				+ "id, nume_clasa, numar_elevi from clasa where id = ?");
-		
+				+ "id, nume_clasa, numar_elevi from clasa where id = ?");		
 		st.setInt(1, id);
 		ResultSet rs = st.executeQuery();
 		return clasaMapper.map(rs);
