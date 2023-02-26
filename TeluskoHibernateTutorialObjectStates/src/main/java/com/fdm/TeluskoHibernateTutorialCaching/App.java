@@ -25,8 +25,7 @@ public class App
         
         Laptop l = (Laptop) session.get(Laptop.class, 6);
         
-        Laptop l2 = (Laptop) session.load(Laptop.class, 6);
-    	
+        Laptop l2 = (Laptop) session.load(Laptop.class, 6);    	
         
         session.getTransaction().commit();
         session.close();        
