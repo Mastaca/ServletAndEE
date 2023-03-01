@@ -35,18 +35,12 @@ public class BankAccountEntity {
 	public BankAccountEntity() {
 		super();
 	}
-	
-	
-
 	public BankAccountEntity(String iban, Moneda moneda, UserAccountEntity uae) {
 		super();
 		this.iban = iban;
 		this.moneda = moneda;
 		this.uae = uae;
 	}
-
-
-
 	public BankAccountEntity(String iban, Moneda moneda, int suma, UserAccountEntity uae) {
 		super();
 		this.iban = iban;
@@ -58,39 +52,30 @@ public class BankAccountEntity {
 	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	public String getIban() {
 		return iban;
 	}
-
 	public void setIban(String iban) {
 		this.iban = iban;
 	}
-
 	public Moneda getMoneda() {
 		return moneda;
 	}
-
 	public void setMoneda(Moneda moneda) {
 		this.moneda = moneda;
 	}
-
 	public int getSuma() {
 		return suma;
 	}
-
 	public void setSuma(int suma) {
 		this.suma = suma;
 	}
-
 	public UserAccountEntity getUae() {
 		return uae;
 	}
-
 	public void setUae(UserAccountEntity uae) {
 		this.uae = uae;
 	}
@@ -99,7 +84,6 @@ public class BankAccountEntity {
 	public int hashCode() {
 		return Objects.hash(iban, id, moneda, suma, uae);
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -112,12 +96,9 @@ public class BankAccountEntity {
 		return Objects.equals(iban, other.iban) && id == other.id && moneda == other.moneda && suma == other.suma
 				&& Objects.equals(uae, other.uae);
 	}
-
 	@Override
 	public String toString() {
 		return "BankAccountEntity [id=" + id + ", iban=" + iban + ", moneda=" + moneda + ", suma=" + suma + ", uae=" + uae + "]";
-	}
-	
-	
+	}	
 
 }

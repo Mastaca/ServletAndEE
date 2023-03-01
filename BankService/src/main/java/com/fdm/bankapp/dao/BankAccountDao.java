@@ -1,17 +1,17 @@
 package com.fdm.bankapp.dao;
 
+import org.hibernate.Session;
+
 import com.fdm.bankapp.dao.entities.BankAccountEntity;
 
 public interface BankAccountDao {
 	
-	BankAccountEntity save(BankAccountEntity bae);
+	BankAccountEntity save(BankAccountEntity bae, Session session);
 	
-	BankAccountEntity findById(int id);
+	BankAccountEntity findById(int id, Session session);
 	
-	BankAccountEntity bankDeposit(int id, int suma);
+	BankAccountEntity findByIban(String iban, Session session);
 	
-	BankAccountEntity bankTransfer(int id, int recipientId, int suma);
-	
-	BankAccountEntity bankWithdrawal(int id, int suma);
+	void update (BankAccountEntity bankAccountEntity, Session session);
 
 }
