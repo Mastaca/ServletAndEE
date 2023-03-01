@@ -2,6 +2,9 @@ package com.fdm.bankapp.service;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import com.fdm.bankapp.dao.UserAccountDao;
 import com.fdm.bankapp.dao.UserAccountDaoImpl;
 import com.fdm.bankapp.dao.entities.BankAccountEntity;
@@ -27,19 +30,64 @@ public class UserAccountService {
 	}
 
 	public UserAccountEntity save(UserAccountEntity uae) {		
-		return userAccountDao.save(uae);
+		Session session = SessionUtils.createSession();
+		Transaction transaction = session.beginTransaction();
+		UserAccountEntity userAccountEntity;
+		try {
+			userAccountEntity = userAccountDao.save(uae, session);
+			transaction.commit();
+		} finally {
+			session.close();
+		}		
+		return userAccountEntity;
 	}
 	
 	public String generateOTP(int userId) {
-		String OTP = otpService.generateOTP();
-		UserAccountEntity uae = userAccountDao.findById(userId);
-		uae.setOtp(OTP);
-		userAccountDao.update(uae);		
+		Session session = SessionUtils.createSession();
+		Transaction transaction = session.beginTransaction();
+		String OTP;
+		try {
+			OTP = otpService.generateOTP();
+			UserAccountEntity uae = userAccountDao.findById(userId, session);
+			uae.setOtp(OTP);
+			userAccountDao.update(uae, session);
+			transaction.commit();
+		} finally {
+			session.close();
+		}
 		return OTP;
 	}
 	
 	public List<BankAccountEntity> getBankAccounts(int userAccountId) {		
-		return userAccountDao.findAllBankAccounts(userAccountId);
+		Session session = SessionUtils.createSession();
+		List<BankAccountEntity> findAllBankAccounts;
+		try {
+			findAllBankAccounts = userAccountDao.findAllBankAccounts(userAccountId, session);
+		} finally {
+			session.close();
+		}
+		return findAllBankAccounts;
+	}
+	
+	public UserAccountEntity getUserAccount (String email) {
+		Session session = SessionUtils.createSession();
+		UserAccountEntity userAccountEntity;
+		try {
+			userAccountEntity = userAccountDao.findByEmail(email, session);
+		} finally {
+			session.close();
+		}
+		return userAccountEntity;
+		
+	}
+	
+	public boolean verifyCredentials(UserAccountEntity userAccountEntity, String email, String password) {
+		boolean isCorrect = false;
+		if (email.equals(userAccountEntity.getEmail()) && 
+			password.equals(userAccountEntity.getParola())) {
+			isCorrect = true;
+		}
+		return isCorrect;
 	}
 	
 }

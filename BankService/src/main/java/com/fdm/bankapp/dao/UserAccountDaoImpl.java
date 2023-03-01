@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import com.fdm.bankapp.dao.entities.BankAccountEntity;
 import com.fdm.bankapp.dao.entities.UserAccountEntity;
@@ -14,62 +12,38 @@ import com.fdm.bankapp.dao.entities.UserAccountEntity;
 public class UserAccountDaoImpl implements UserAccountDao  {
 
 	@Override
-	public UserAccountEntity save(UserAccountEntity uae) {		
-		Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        int id = (int)session.save(uae);
-        tx.commit();
-        UserAccountEntity savedUae = session.get(UserAccountEntity.class, id);
-        session.close();
-        sessionFactory.close();
-        return savedUae;        
-	}
-
-	@Override
-	public UserAccountEntity findById(int id) {
-		Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        UserAccountEntity uae = session.get(UserAccountEntity.class, id);
-        
-        session.close();
-        sessionFactory.close();
+	public UserAccountEntity save(UserAccountEntity userAccountEntity, Session session) {		
 		
-		return uae;
+        session.save(userAccountEntity);
+        session.refresh(userAccountEntity);
+        return userAccountEntity;        
 	}
 
 	@Override
-	public UserAccountEntity update(UserAccountEntity uae) {
-		
-		Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        session.update(uae);
-        tx.commit();
-        session.close();
-        sessionFactory.close();
-        return uae;
+	public UserAccountEntity findById(int id, Session session) {
+		return session.get(UserAccountEntity.class, id);
 	}
 
 	@Override
-	public List<BankAccountEntity> findAllBankAccounts(int id) {
-		Configuration configuration = new Configuration().configure();
-        SessionFactory sessionFactory = configuration.buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-        
+	public UserAccountEntity update(UserAccountEntity userAccountEntity, Session session) {
+        session.update(userAccountEntity);
+        return userAccountEntity;
+	}
+
+	@Override
+	public List<BankAccountEntity> findAllBankAccounts(int id, Session session) {        
         UserAccountEntity uae = session.get(UserAccountEntity.class, id);        
         Hibernate.initialize(uae.getAccounts());
-        List<BankAccountEntity> listBAccounts = uae.getAccounts();
-                
-        session.close();
-        sessionFactory.close();
-		
-		return listBAccounts;
+        List<BankAccountEntity> listBankAccounts = uae.getAccounts();
+		return listBankAccounts;
+	}
+
+	@Override
+	public UserAccountEntity findByEmail(String email, Session session) {
+		Query query = session.createQuery("from UserAccountEntity where email= :email");
+        query.setParameter("email", email);
+        UserAccountEntity userAccountEntity = (UserAccountEntity) query.uniqueResult();
+		return userAccountEntity;
 	}
 
 }

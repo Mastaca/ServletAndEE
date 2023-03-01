@@ -28,7 +28,7 @@ public class BankAccountService {
 		return instance;
 	}
 
-	public BankAccountEntity save(BankAccountEntity bae) {	
+	public BankAccountEntity save(BankAccountEntity bae) {
 		Session session = SessionUtils.createSession();
 		Transaction transaction = session.beginTransaction();
 		BankAccountEntity bankAccountEntity;
