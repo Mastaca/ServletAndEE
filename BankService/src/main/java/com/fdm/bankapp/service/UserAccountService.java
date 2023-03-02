@@ -81,12 +81,15 @@ public class UserAccountService {
 		
 	}
 	
-	public boolean verifyCredentials(UserAccountEntity userAccountEntity, String email, String password) {
+	public boolean verifyCredentials(String email, String password) {
+		UserAccountEntity userAccountEntity = UserAccountService.getInstance().getUserAccount(email);
 		boolean isCorrect = false;
-		if (email.equals(userAccountEntity.getEmail()) && 
-			password.equals(userAccountEntity.getParola())) {
-			isCorrect = true;
-		}
+		if (userAccountEntity != null) {			
+			if (email.equals(userAccountEntity.getEmail()) && 
+				password.equals(userAccountEntity.getParola())) {
+				isCorrect = true;
+			}
+		} 
 		return isCorrect;
 	}
 	

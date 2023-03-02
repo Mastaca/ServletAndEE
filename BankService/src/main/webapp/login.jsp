@@ -9,6 +9,11 @@
 <body>
 
 	<form action="login" method="post">
+	<%
+		if (request.getAttribute("message") != null) {   %><p><%
+			out.println(request.getAttribute("message"));
+	%></p><%	}
+	%>
 	Enter email address: <input type="text" name="email"><br>
 	Enter password: <input type="password" name="password"><br>
 	<input type="submit" value="Login">

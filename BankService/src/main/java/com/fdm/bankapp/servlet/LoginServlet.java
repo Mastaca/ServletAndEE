@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fdm.bankapp.dao.entities.UserAccountEntity;
 import com.fdm.bankapp.service.UserAccountService;
 
 @WebServlet("/login")
@@ -17,7 +16,6 @@ public class LoginServlet extends HttpServlet {
 
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,16 +26,12 @@ public class LoginServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
-		
-		UserAccountEntity userAccountEntity = UserAccountService.getInstance().getUserAccount(email);
-		if(UserAccountService.getInstance().verifyCredentials(userAccountEntity, email, password)) {
+		if(UserAccountService.getInstance().verifyCredentials(email, password)) {
 			HttpSession session = request.getSession();
-			String sessionId = session.getId();
-			response.setStatus(200);
-			response.setHeader("JSESSIONID", sessionId);
-//			response.sendRedirect("index.html");
-		} else {	
-			response.sendRedirect("login.jsp");
+			session.setAttribute("username", email);
+		} else {
+			request.setAttribute("message", "Invalid user credentials");
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}		
 	}
 
