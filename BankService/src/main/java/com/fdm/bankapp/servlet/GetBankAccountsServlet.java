@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fdm.bankapp.dao.entities.BankAccountEntity;
 import com.fdm.bankapp.service.UserAccountService;
 
-/**
- * Servlet implementation class GetBankAccountsServlet
- */
 @WebServlet("/userAccount/bankAccounts")
 public class GetBankAccountsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
