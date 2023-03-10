@@ -2,9 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN"
         "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 
-<beans default-init-method="myInit" default-destroy-method="cleanUp">
+<beans>
 
-	<bean id="triangle" class="com.fdm.JavaBrains01_SpringDemo.Triangle" autowire="byName">
+	<bean id="triangle" class="com.fdm.JavaBrains01_SpringDemo.Triangle">
+		<property name="pointA" ref="pointA"></property>
+		<property name="pointB" ref="pointB"></property>
+		<property name="pointC" ref="pointC"></property>
 	</bean>
 	
 	<bean id="pointA" class="com.fdm.JavaBrains01_SpringDemo.Point">
@@ -21,5 +24,10 @@
 		<property name="x" value="20"></property>
 		<property name="y" value="0"></property>
 	</bean>
+	
+	<bean id="circle" class="com.fdm.JavaBrains01_SpringDemo.Circle">
+		<property name="center" ref="pointA"></property>
+	</bean>
+	
 
 </beans>
